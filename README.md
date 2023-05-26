@@ -204,3 +204,105 @@ class CounterController(private val model: CounterModel, private val view: Count
     }
 }
 ```
+
+# Now let us write the same counter app using MVP design pattern
+
+First, let's create the CounterModel class, which represents the data and business logic of the counter:
+
+```kt
+class CounterModel {
+    private var count: Int = 0
+
+    fun getCount(): Int {
+        return count
+    }
+
+    fun incrementCount() {
+        count++
+    }
+
+    fun decrementCount() {
+        count--
+    }
+}
+```
+
+Next, we'll create the CounterView interface, which defines the contract for the view:
+
+```js
+interface CounterView {
+    fun updateCount(count: Int)
+}
+```
+
+Then, we'll create the CounterPresenter class, which acts as the presenter and handles the logic:
+
+```kt
+class CounterPresenter(private val model: CounterModel, private val view: CounterView) {
+    fun incrementCount() {
+        model.incrementCount()
+        updateView()
+    }
+
+    fun decrementCount() {
+        model.decrementCount()
+        updateView()
+    }
+
+    private fun updateView() {
+        val count = model.getCount()
+        view.updateCount(count)
+    }
+}
+```
+
+In the code above, CounterPresenter receives the model and the view as dependencies. It handles the user actions and updates the model accordingly. After each update, it calls the updateView() method to notify the view of the updated count value.
+
+Next, we'll modify the MainActivity to implement the CounterView interface:
+
+```kt
+class MainActivity : AppCompatActivity(), CounterView {
+    private lateinit var counterPresenter: CounterPresenter
+    private lateinit var countTextView: TextView
+    private lateinit var incrementButton: Button
+    private lateinit var decrementButton: Button
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        countTextView = findViewById(R.id.countTextView)
+        incrementButton = findViewById(R.id.incrementButton)
+        decrementButton = findViewById(R.id.decrementButton)
+
+        val counterModel = CounterModel()
+        counterPresenter = CounterPresenter(counterModel, this)
+
+        incrementButton.setOnClickListener {
+            counterPresenter.incrementCount()
+        }
+
+        decrementButton.setOnClickListener {
+            counterPresenter.decrementCount()
+        }
+
+        updateCount(counterModel.getCount())
+    }
+
+    override fun updateCount(count: Int) {
+        countTextView.text = count.toString()
+    }
+}
+```
+
+Please note that you can create a separate view like our previous MVC example.
+
+In the MainActivity, we instantiate the CounterModel and CounterPresenter, passing the model and the view (which is the activity itself) to the presenter. We set click listeners for the buttons, which trigger the corresponding methods in the presenter.
+
+In the MVP pattern, the model (CounterModel) represents the data and business logic, the view (CounterView) defines the contract for the UI and receives updates from the presenter, and the presenter (CounterPresenter) acts as the intermediary between the model and the view, handling user actions and updating the view.
+
+Please note that this is a simplified example to illustrate the MVP pattern in the context of a counter app. In a real-world scenario, you may have more complex interactions and additional components.
+
+# Counter App using MVVP design pattern
+
+
