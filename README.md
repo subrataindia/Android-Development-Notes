@@ -28,7 +28,7 @@
 
 - **Testability:** MVP and MVVM are often considered more testable than MVC because the business logic is isolated in the presenter/ViewModel, making it easier to write unit tests without direct dependencies on the view or framework components.
 
-!(https://miro.medium.com/v2/resize:fit:1280/format:webp/0*1ZrS8t3HvPzRAuqg.png)
+![](https://miro.medium.com/v2/resize:fit:1280/format:webp/0*1ZrS8t3HvPzRAuqg.png)
 
 - **Entry Point:** For MVC, the entry point to the application is the Controller whereas, for MVP and MVVM, the entry point is the View.
 
