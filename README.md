@@ -10,7 +10,7 @@
 
 - Model represents the data and business logic of the application.
 - View defines the contract for the user interface and receives updates from the presenter.
-- Presenter acts as the intermediary between the model and the view, handling user actions, updating the model, and updating the view. The presenter contains the logic and state management.
+- Presenter acts as the intermediary between the model and the view, handling user actions, updating the model, and updating the view. The presenter contains the UI logic and state management.
 
 ## MVVM (Model-View-ViewModel):
 
