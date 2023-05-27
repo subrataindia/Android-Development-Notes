@@ -28,6 +28,10 @@
 
 - **Testability:** MVP and MVVM are often considered more testable than MVC because the business logic is isolated in the presenter/ViewModel, making it easier to write unit tests without direct dependencies on the view or framework components.
 
+!(https://miro.medium.com/v2/resize:fit:1280/format:webp/0*1ZrS8t3HvPzRAuqg.png)
+
+- **Entry Point:** For MVC, the entry point to the application is the Controller whereas, for MVP and MVVM, the entry point is the View.
+
 It's important to note that there isn't a "one-size-fits-all" solution, and the choice of design pattern depends on the specific requirements and complexities of the application.
 
 Now let us create a counter android app using above three design patterns and find the difference.
